@@ -38,7 +38,7 @@ namespace BallDodgeTemplate
             int y = randGen.Next(10, this.Height - 30);
             chaseBall = new Ball(x, y, 10, 10);
             
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 8; i++)
             {
                 x = randGen.Next(10, this.Width - 30);
                 y = randGen.Next(10, this.Height - 30);
@@ -76,6 +76,21 @@ namespace BallDodgeTemplate
                 b.Move(this.Width, this.Height);
             }
 
+            foreach (Ball b in balls)
+            {
+                chaseBall.Collision(b);
+            }
+
+            chaseBall.Collision(hero);
+
+            foreach (Ball b in balls)
+            {
+                if (b.Collision(hero))
+                {
+                    //newBall();
+                    break;
+                }
+            }
             //if (chaseBall.x > this.Width - chaseBall.size || chaseBall.x < 0)
             //{
             //    chaseBall.xSpeed *= -1;
@@ -137,5 +152,10 @@ namespace BallDodgeTemplate
                 e.Graphics.FillEllipse(redBrush, b.x, b.y, b.size, b.size);
             }
         }
+
+        //public void newBall()
+        //{
+
+        //}
     }
 }
