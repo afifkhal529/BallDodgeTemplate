@@ -19,17 +19,26 @@ namespace BallDodgeTemplate
 
         private void easyButton_Click(object sender, EventArgs e)
         {
+            GameScreen.difficulty = 5;
+            GameScreen.lives = 5;
+
             Form1.ChangeScreen(this, new GameScreen());
         }
 
         private void mediumButton_Click(object sender, EventArgs e)
         {
+            GameScreen.difficulty = 20;
+            GameScreen.lives = 3;
 
+            Form1.ChangeScreen(this, new GameScreen());
         }
 
         private void hardButton_Click(object sender, EventArgs e)
         {
+            GameScreen.difficulty = 30;
+            GameScreen.lives = 3;
 
+            Form1.ChangeScreen(this, new GameScreen());
         }
 
         private void exitButton_Click(object sender, EventArgs e)

@@ -15,6 +15,11 @@ namespace BallDodgeTemplate
         public GameOverScreen()
         {
             InitializeComponent();
+            
+            //if(int lives == 5)
+            //{
+
+            //}
         }
     }
 }

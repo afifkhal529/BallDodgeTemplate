@@ -10,7 +10,7 @@ namespace BallDodgeTemplate
     internal class Ball
     {
         public int x, y, xSpeed, ySpeed;
-        public int size = 10;
+        public int size = 20;
 
         public Ball(int _x, int _y, int _xSpeed, int _ySpeed)
         {
@@ -34,8 +34,7 @@ namespace BallDodgeTemplate
             {
                 ySpeed *= -1;
             }
-
-           
+                       
         }
 
         public void Collision(Ball b)

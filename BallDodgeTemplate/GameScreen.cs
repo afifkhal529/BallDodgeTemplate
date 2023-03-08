@@ -12,6 +12,10 @@ namespace BallDodgeTemplate
 {
     public partial class GameScreen : UserControl
     {
+        int score = 0;
+        public static int lives = 5;
+        public static int difficulty;
+
         Ball chaseBall = new Ball(10, 10, 10, 10);
         List<Ball> balls = new List<Ball>();
 
@@ -32,18 +36,16 @@ namespace BallDodgeTemplate
 
         public void InitializeGame()
         {
-            hero = new Player(50, 150);
+            hero = new Player(50, 100);
 
             int x = randGen.Next(10, this.Width - 30);
             int y = randGen.Next(10, this.Height - 30);
             chaseBall = new Ball(x, y, 10, 10);
             
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < difficulty; i++)
             {
-                x = randGen.Next(10, this.Width - 30);
-                y = randGen.Next(10, this.Height - 30);
-                Ball newBall = new Ball(x, y, 10, 10);
-                balls.Add(newBall);
+                
+                newBall();
             }
         }
 
@@ -81,16 +83,26 @@ namespace BallDodgeTemplate
                 chaseBall.Collision(b);
             }
 
-            chaseBall.Collision(hero);
+            if (chaseBall.Collision(hero))
+            {
+                lives++;
+            }
 
             foreach (Ball b in balls)
             {
                 if (b.Collision(hero))
                 {
-                    //newBall();
+                    newBall();
+                    lives--;
                     break;
                 }
             }
+
+            if (lives == 0)
+            {
+                gameEngine.Stop();
+            }
+
             //if (chaseBall.x > this.Width - chaseBall.size || chaseBall.x < 0)
             //{
             //    chaseBall.xSpeed *= -1;
@@ -153,9 +165,12 @@ namespace BallDodgeTemplate
             }
         }
 
-        //public void newBall()
-        //{
-
-        //}
+        public void newBall()
+        {
+            int x = randGen.Next(10, this.Width - 30);
+            int y = randGen.Next(10, this.Height - 30);
+            Ball newBall = new Ball(x, y, 10, 10);
+            balls.Add(newBall);
+        }
     }
 }
